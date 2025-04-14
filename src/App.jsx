@@ -7,7 +7,7 @@ function App() {
   const [results, setResults] = useState(null);
 
   useEffect(() => {
-    fetch('/simplex_coco.json')
+    fetch(import.meta.env.BASE_URL + 'simplex_coco.json')
       .then((res) => res.json())
       .then((json) => setData(json['Simplex Coco']));
   }, []);
