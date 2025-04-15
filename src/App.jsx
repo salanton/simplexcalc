@@ -6,11 +6,11 @@ function App() {
   const [data, setData] = useState(null);
   const [results, setResults] = useState(null);
 
-  useEffect(() => {
-    fetch(import.meta.env.BASE_URL + 'simplex_coco.json')
-      .then((res) => res.json())
-      .then((json) => setData(json['Simplex Coco']));
-  }, []);
+ useEffect(() => {
+  fetch(import.meta.env.BASE_URL + 'simplex_coco.json')
+    .then((res) => res.json())
+    .then((json) => setData(json['Simplex Coco']));
+}, []);
 
   const handleCalculate = (stage, liters) => {
     if (!data || !data[stage]) return;
