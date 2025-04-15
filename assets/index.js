@@ -44,13 +44,20 @@ const CalculatorForm = ({ stages, includeAdditives, setIncludeAdditives, onCalcu
   ]);
 };
 
-const ResultsDisplay = ({ stage, liters, result }) => {
+const ResultsDisplay = ({ stage, liters, result, extras }) => {
   return React.createElement('section', {}, [
     React.createElement('h2', {}, `Результаты для этапа: ${stage}`),
     React.createElement('p', {}, `Объем раствора: ${liters} л`),
     React.createElement('ul', {},
       Object.entries(result).map(([name, val]) =>
         React.createElement('li', { key: name }, `${name}: ${val}`)
+      )
+    ),
+    React.createElement('hr'),
+    React.createElement('p', { style: { marginTop: '1rem' } }, 'Показатели раствора:'),
+    React.createElement('ul', {},
+      Object.entries(extras).map(([key, val]) =>
+        React.createElement('li', { key: key }, `${key}: ${val}`)
       )
     )
   ]);
@@ -60,6 +67,7 @@ const App = () => {
   const [data, setData] = useState(null);
   const [additives, setAdditives] = useState(null);
   const [results, setResults] = useState(null);
+  const [extras, setExtras] = useState({});
   const [includeAdditives, setIncludeAdditives] = useState(true);
 
   useEffect(() => {
@@ -81,18 +89,26 @@ const App = () => {
       });
     }
 
-    const result = Object.entries(merge).reduce((acc, [key, value]) => {
+    const result = {};
+    const extras = {};
+
+    Object.entries(merge).forEach(([key, value]) => {
       if (value === '—') {
-        acc[key] = '—';
-        return acc;
+        (key === 'pH' || key === 'EC' ? extras : result)[key] = '—';
+        return;
       }
-      const [min, max] = value.split('–').map(parseFloat);
-      const from = min * liters;
-      const to = max ? max * liters : from;
-      acc[key] = from === to ? `${from.toFixed(1)} мл` : `${from.toFixed(1)} – ${to.toFixed(1)} мл`;
-      return acc;
-    }, {});
+      if (key === 'pH' || key === 'EC') {
+        extras[key] = value;
+      } else {
+        const [min, max] = value.split('–').map(parseFloat);
+        const from = min * liters;
+        const to = max ? max * liters : from;
+        result[key] = from === to ? `${from.toFixed(1)} мл` : `${from.toFixed(1)} – ${to.toFixed(1)} мл`;
+      }
+    });
+
     setResults({ stage, liters, result });
+    setExtras(extras);
   };
 
   if (!data || !additives) return React.createElement('p', null, 'Загрузка...');
@@ -105,7 +121,7 @@ const App = () => {
       setIncludeAdditives,
       onCalculate: handleCalculate
     }),
-    results && React.createElement(ResultsDisplay, results)
+    results && React.createElement(ResultsDisplay, { ...results, extras })
   ]);
 };
 
