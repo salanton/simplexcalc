@@ -1,0 +1,1 @@
+// example compiled JavaScript for simplex calculator
