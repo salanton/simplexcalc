@@ -1,5 +1,5 @@
-import React from 'https://cdn.skypack.dev/react';
-import ReactDOM from 'https://cdn.skypack.dev/react-dom/client';
+import React from 'https://esm.sh/react@18.2.0';
+import ReactDOM from 'https://esm.sh/react-dom@18.2.0/client';
 
 const App = () => {
   return React.createElement('main', {
@@ -13,7 +13,7 @@ const App = () => {
     React.createElement('h1', {
       style: { fontSize: '24px', marginBottom: '1rem' }
     }, '✅ Simplex Калькулятор'),
-    React.createElement('p', null, 'Приложение успешно монтируется через CDN без сборки.')
+    React.createElement('p', null, 'Приложение монтируется через ESM.sh и работает.')
   ]);
 };
 
