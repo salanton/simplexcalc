@@ -13,11 +13,7 @@ function CalculatorForm({ stages, onCalculate }) {
     <form onSubmit={handleSubmit} className="space-y-4">
       <label className="block">
         Этап жизни растения:
-        <select
-          className="w-full p-2 border rounded"
-          value={stage}
-          onChange={(e) => setStage(e.target.value)}
-        >
+        <select className="w-full p-2 border rounded" value={stage} onChange={(e) => setStage(e.target.value)}>
           {stages.map((s) => (
             <option key={s} value={s}>{s}</option>
           ))}
@@ -34,9 +30,7 @@ function CalculatorForm({ stages, onCalculate }) {
           className="w-full p-2 border rounded"
         />
       </label>
-      <button className="bg-black text-white px-4 py-2 rounded" type="submit">
-        Рассчитать
-      </button>
+      <button className="bg-black text-white px-4 py-2 rounded" type="submit">Рассчитать</button>
     </form>
   );
 }
