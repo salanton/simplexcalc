@@ -1,0 +1,81 @@
+{
+  "Добавки и стимуляторы": {
+    "Проращивание и укоренение": {
+      "CalMag Plus": "—",
+      "Taste": "—",
+      "PK Boost": "—",
+      "Power": "—",
+      "Mass": "—",
+      "Vega": "—",
+      "SilicX": "—",
+      "Fulvic Gold": "—",
+      "Aroma Punch": "—"
+    },
+    "Вегетативный рост": {
+      "CalMag Plus": "0.5–1.0",
+      "Taste": "—",
+      "PK Boost": "—",
+      "Power": "—",
+      "Mass": "0.25–0.5",
+      "Vega": "1.0–2.0",
+      "SilicX": "0.25–0.5",
+      "Fulvic Gold": "—",
+      "Aroma Punch": "0.5"
+    },
+    "Предцвет": {
+      "CalMag Plus": "1.0–1.5",
+      "Taste": "0.5–1.0",
+      "PK Boost": "0.5–1.0",
+      "Power": "2.0",
+      "Mass": "0.25–0.5",
+      "Vega": "1.0–2.0",
+      "SilicX": "0.25–0.5",
+      "Fulvic Gold": "—",
+      "Aroma Punch": "1.0–2.0"
+    },
+    "Начало цветения": {
+      "CalMag Plus": "1.0–1.5",
+      "Taste": "0.5–1.0",
+      "PK Boost": "0.5–1.0",
+      "Power": "2.0",
+      "Mass": "0.25–0.5",
+      "Vega": "1.0–2.0",
+      "SilicX": "0.25–0.5",
+      "Fulvic Gold": "—",
+      "Aroma Punch": "1.0–2.0"
+    },
+    "Развитие цветков": {
+      "CalMag Plus": "1.0–1.5",
+      "Taste": "1.0–2.0",
+      "PK Boost": "—",
+      "Power": "2.0",
+      "Mass": "0.25–0.5",
+      "Vega": "—",
+      "SilicX": "0.25–0.5",
+      "Fulvic Gold": "—",
+      "Aroma Punch": "2.0"
+    },
+    "Созревание": {
+      "CalMag Plus": "1.0–1.5",
+      "Taste": "1.5–2.0",
+      "PK Boost": "—",
+      "Power": "2.0",
+      "Mass": "—",
+      "Vega": "—",
+      "SilicX": "0.25–0.5",
+      "Fulvic Gold": "—",
+      "Aroma Punch": "3.0"
+    },
+    "Промывка": {
+      "CalMag Plus": "—",
+      "Taste": "1.5–2.0",
+      "PK Boost": "—",
+      "Power": "—",
+      "Mass": "—",
+      "Vega": "—",
+      "SilicX": "—",
+      "Fulvic Gold": "—",
+      "Aroma Punch": "3.0"
+    }
+  }
+}

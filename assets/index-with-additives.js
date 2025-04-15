@@ -1,13 +1,14 @@
+
 import React, { useState, useEffect } from 'https://esm.sh/react@18.2.0';
 import ReactDOM from 'https://esm.sh/react-dom@18.2.0/client';
 
-const CalculatorForm = ({ stages, onCalculate }) => {
+const CalculatorForm = ({ stages, includeAdditives, setIncludeAdditives, onCalculate }) => {
   const [stage, setStage] = useState(stages[0]);
   const [liters, setLiters] = useState(1);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCalculate(stage, liters);
+    onCalculate(stage, liters, includeAdditives);
   };
 
   return React.createElement('form', { onSubmit: handleSubmit, style: { marginBottom: '2rem' } }, [
@@ -28,6 +29,14 @@ const CalculatorForm = ({ stages, onCalculate }) => {
       onChange: (e) => setLiters(parseFloat(e.target.value)),
       style: { display: 'block', marginBottom: '1rem', padding: '0.5rem' }
     }),
+    React.createElement('label', { style: { display: 'block', marginBottom: '1rem' } }, [
+      React.createElement('input', {
+        type: 'checkbox',
+        checked: includeAdditives,
+        onChange: () => setIncludeAdditives(!includeAdditives)
+      }),
+      ' Включить добавки и стимуляторы'
+    ]),
     React.createElement('button', {
       type: 'submit',
       style: { padding: '0.5rem 1rem' }
@@ -49,17 +58,30 @@ const ResultsDisplay = ({ stage, liters, result }) => {
 
 const App = () => {
   const [data, setData] = useState(null);
+  const [additives, setAdditives] = useState(null);
   const [results, setResults] = useState(null);
+  const [includeAdditives, setIncludeAdditives] = useState(true);
 
   useEffect(() => {
-    fetch('./simplex_coco.json')
-      .then(res => res.json())
-      .then(json => setData(json["Simplex Coco"]));
+    Promise.all([
+      fetch('./simplex_coco.json').then(res => res.json()),
+      fetch('./additives.json').then(res => res.json())
+    ]).then(([main, adds]) => {
+      setData(main["Simplex Coco"]);
+      setAdditives(adds["Добавки и стимуляторы"]);
+    });
   }, []);
 
-  const handleCalculate = (stage, liters) => {
-    if (!data || !data[stage]) return;
-    const result = Object.entries(data[stage]).reduce((acc, [key, value]) => {
+  const handleCalculate = (stage, liters, includeAdds) => {
+    const merge = { ...(data?.[stage] || {}) };
+
+    if (includeAdds && additives?.[stage]) {
+      Object.entries(additives[stage]).forEach(([name, val]) => {
+        merge[name] = val;
+      });
+    }
+
+    const result = Object.entries(merge).reduce((acc, [key, value]) => {
       if (value === '—') {
         acc[key] = '—';
         return acc;
@@ -73,11 +95,16 @@ const App = () => {
     setResults({ stage, liters, result });
   };
 
-  if (!data) return React.createElement('p', null, 'Загрузка...');
+  if (!data || !additives) return React.createElement('p', null, 'Загрузка...');
 
   return React.createElement('main', { style: { fontFamily: 'sans-serif', padding: '2rem' } }, [
     React.createElement('h1', { style: { fontSize: '24px', marginBottom: '1rem' } }, '✅ Simplex Калькулятор'),
-    React.createElement(CalculatorForm, { stages: Object.keys(data), onCalculate: handleCalculate }),
+    React.createElement(CalculatorForm, {
+      stages: Object.keys(data),
+      includeAdditives,
+      setIncludeAdditives,
+      onCalculate: handleCalculate
+    }),
     results && React.createElement(ResultsDisplay, results)
   ]);
 };
