@@ -12,6 +12,7 @@ function App() {
     .then((json) => setData(json['Simplex Coco']));
 }, []);
 
+
   const handleCalculate = (stage, liters) => {
     if (!data || !data[stage]) return;
     const result = Object.entries(data[stage]).reduce((acc, [name, value]) => {
