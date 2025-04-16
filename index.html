@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Simplex Калькулятор</title>
-    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-    <script src="./assets/index.js"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Калькулятор удобрений</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Калькулятор удобрений</h1>
+
+  <label for="plants">Количество растений:</label>
+  <input type="number" id="plants" />
+
+  <button onclick="calculate()">Рассчитать</button>
+
+  <div id="result"></div>
+
+  <script src="script.js"></script>
+</body>
 </html>
