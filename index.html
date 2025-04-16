@@ -9,8 +9,12 @@
 <body>
   <h1>Калькулятор удобрений</h1>
 
-  <label for="plants">Количество растений:</label>
-  <input type="number" id="plants" />
+  <label for="solution">Тип раствора:</label>
+<select id="solution">
+  <option value="coco">Кокос</option>
+  <option value="hydro">Гидропоника</option>
+  <option value="soil">Почва</option>
+</select>
 
   <button onclick="calculate()">Рассчитать</button>
 
