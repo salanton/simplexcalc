@@ -123,7 +123,7 @@ function calculate() {
   const volume = parseFloat(document.getElementById('volume-input').value);
   state.volume = volume;
 
-  const resultContainer = document.getElementById('result-container');
+  const resultContainer = document.getElementById('result-output');
   resultContainer.innerHTML = '<h3>Рецепт</h3>';
   
   const list = [];
