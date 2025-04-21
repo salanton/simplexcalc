@@ -120,17 +120,25 @@ function renderStimulators() {
 
 // 7. Обработка расчёта
 function calculate() {
-  const volume = parseFloat(document.getElementById('volume-input').value);
+  const volume = parseFloat(document.getElementById('water-volume').value);
   state.volume = volume;
 
-  const resultContainer = document.getElementById('result-output');
+  const resultContainer = document.getElementById('recipe-output');
   resultContainer.innerHTML = '<h3>Рецепт</h3>';
-  
-  const list = [];
+
+  const method = state.baseData.methods.find(m => m.name === state.method);
+  const stage = method?.stages.find(s => s.name === state.stage);
+
+  if (!method || !stage) {
+    resultContainer.innerHTML += `<p>Ошибка: метод или стадия не выбраны.</p>`;
+    console.warn('method:', method);
+    console.warn('stage:', stage);
+    return;
+  }
+
+  const list = []; // ✅ вот это нужно было добавить
 
   // База
-  const method = state.baseData.methods.find(m => m.name === state.method);
-  const stage = method.stages.find(s => s.name === state.stage);
   stage.base.forEach(b => {
     if (b.value !== '—') {
       list.push({ name: b.name, value: b.value });
@@ -138,12 +146,12 @@ function calculate() {
   });
 
   // Добавки
-  document.querySelectorAll('#additives-container input:checked').forEach(input => {
+  document.querySelectorAll('#additives-options input:checked').forEach(input => {
     list.push({ name: input.dataset.name, value: input.dataset.value });
   });
 
   // Стимуляторы
-  document.querySelectorAll('#stimulators-container input:checked').forEach(input => {
+  document.querySelectorAll('#stimulators-options input:checked').forEach(input => {
     list.push({ name: input.dataset.name, value: input.dataset.value });
   });
 
@@ -168,6 +176,7 @@ function calculate() {
   phBlock.innerHTML = `<strong>pH:</strong> ${pH} <br> <strong>EC:</strong> ${ec}`;
   resultContainer.appendChild(phBlock);
 }
+
 
 // Привязка кнопки
 document.getElementById('calculate-btn').addEventListener('click', calculate);
