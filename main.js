@@ -86,18 +86,21 @@ function renderAdditives() {
   const stage = state.stage;
   const list = state.addData.additives;
   addContainer.innerHTML = '';
+
   list.forEach(add => {
     const stageObj = add.stages.find(s => s.name === stage);
-    if (stageObj && stageObj.value !== '—') {
-      const label = document.createElement('label');
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.dataset.name = add.name;
-      checkbox.dataset.value = stageObj.value;
-      label.appendChild(checkbox);
-      label.append(` ${add.name}: ${stageObj.value} мл/л`);
-      addContainer.appendChild(label);
-    }
+    const isActive = stageObj && stageObj.value !== '—';
+
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.dataset.name = add.name;
+    checkbox.dataset.value = stageObj?.value || '—';
+    checkbox.disabled = !isActive;
+
+    label.appendChild(checkbox);
+    label.append(` ${add.name}: ${stageObj?.value || '—'} мл/л`);
+    addContainer.appendChild(label);
   });
 }
 
@@ -107,20 +110,24 @@ function renderStimulators() {
   const stage = state.stage;
   const list = state.stimData.stimulators;
   stimContainer.innerHTML = '';
+
   list.forEach(stim => {
     const stageObj = stim.stages.find(s => s.name === stage);
-    if (stageObj && stageObj.value !== '—') {
-      const label = document.createElement('label');
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.dataset.name = stim.name;
-      checkbox.dataset.value = stageObj.value;
-      label.appendChild(checkbox);
-      label.append(` ${stim.name}: ${stageObj.value} мл/л`);
-      stimContainer.appendChild(label);
-    }
+    const isActive = stageObj && stageObj.value !== '—';
+
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.dataset.name = stim.name;
+    checkbox.dataset.value = stageObj?.value || '—';
+    checkbox.disabled = !isActive;
+
+    label.appendChild(checkbox);
+    label.append(` ${stim.name}: ${stageObj?.value || '—'} мл/л`);
+    stimContainer.appendChild(label);
   });
 }
+
 
 // 7. Расчёт
 function calculate() {
