@@ -11,16 +11,25 @@ const state = {
 
 // 1. Загрузка JSON
 async function loadData() {
-  const [base, additives, stimulators] = await Promise.all([
-  fetch('data/simplex/simplexbase.json').then(r => r.json()),
-  fetch('data/simplex/simplexadd.json').then(r => r.json()),
-  fetch('data/simplex/simplexstim.json').then(r => r.json()),
-]);
-  state.baseData = base;
-  state.addData = additives;
-  state.stimData = stimulators;
-  renderMethods(base.methods);
+  try {
+    const [base, additives, stimulators] = await Promise.all([
+      fetch('data/simplex/simplexbase.json').then(r => r.json()),
+      fetch('data/simplex/simplexadd.json').then(r => r.json()),
+      fetch('data/simplex/simplexstim.json').then(r => r.json()),
+    ]);
+    console.log('baseData:', base);
+    console.log('addData:', additives);
+    console.log('stimData:', stimulators);
+
+    state.baseData = base;
+    state.addData = additives;
+    state.stimData = stimulators;
+    renderMethods(base.methods);
+  } catch (e) {
+    console.error('Ошибка при загрузке данных:', e);
+  }
 }
+
 
 // 2. Рендер методов (Coco, Terra, Hydro)
 function renderMethods(methods) {
