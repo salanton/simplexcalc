@@ -1,0 +1,210 @@
+{
+    "manufacturer": "Simplex",
+    "methods": [
+      {
+        "name": "Coco",
+        "stages": [
+          {
+            "name": "Проращивание и укоренение",
+            "base": [
+              { "name": "Coco A", "value": "1.0" },
+              { "name": "Coco B", "value": "1.0" }
+            ],
+            "ec": "0.7–1.2",
+            "ph": "5.5"
+          },
+          {
+            "name": "Вегетативный рост",
+            "base": [
+              { "name": "Coco A", "value": "1.5–2.0" },
+              { "name": "Coco B", "value": "1.5–2.0" }
+            ],
+            "ec": "1.1–1.6",
+            "ph": "5.5–5.8"
+          },
+          {
+            "name": "Предцвет",
+            "base": [
+              { "name": "Coco A", "value": "2.0–3.0" },
+              { "name": "Coco B", "value": "2.0–3.0" }
+            ],
+            "ec": "1.5–1.8",
+            "ph": "5.8–6.0"
+          },
+          {
+            "name": "Начало цветения",
+            "base": [
+              { "name": "Coco A", "value": "2.0–3.0" },
+              { "name": "Coco B", "value": "2.0–3.0" }
+            ],
+            "ec": "1.5–1.8",
+            "ph": "6.0–6.2"
+          },
+          {
+            "name": "Развитие цветков",
+            "base": [
+              { "name": "Coco A", "value": "2.0–3.0" },
+              { "name": "Coco B", "value": "2.0–3.0" }
+            ],
+            "ec": "1.5–1.8",
+            "ph": "6.0–6.2"
+          },
+          {
+            "name": "Созревание",
+            "base": [
+              { "name": "Coco A", "value": "1.5–2.0" },
+              { "name": "Coco B", "value": "1.5–2.0" }
+            ],
+            "ec": "1.1–1.6",
+            "ph": "6.2–6.4"
+          },
+          {
+            "name": "Промывка",
+            "base": [
+              { "name": "Coco A", "value": "—" },
+              { "name": "Coco B", "value": "—" }
+            ],
+            "ec": "0.4",
+            "ph": "6.2–6.4"
+          }
+        ]
+      },
+      {
+        "name": "Terra",
+        "stages": [
+          {
+            "name": "Проращивание и укоренение",
+            "base": [
+              { "name": "Terra Vega", "value": "—" },
+              { "name": "Terra Bloom", "value": "—" }
+            ],
+            "ec": "0.4",
+            "ph": "6.5"
+          },
+          {
+            "name": "Вегетативный рост",
+            "base": [
+              { "name": "Terra Vega", "value": "0.5–2.0" },
+              { "name": "Terra Bloom", "value": "—" }
+            ],
+            "ec": "0.5–1.3",
+            "ph": "6.5"
+          },
+          {
+            "name": "Предцвет",
+            "base": [
+              { "name": "Terra Vega", "value": "3.0–4.0" },
+              { "name": "Terra Bloom", "value": "—" }
+            ],
+            "ec": "1.1–1.8",
+            "ph": "6.5"
+          },
+          {
+            "name": "Начало цветения",
+            "base": [
+              { "name": "Terra Vega", "value": "—" },
+              { "name": "Terra Bloom", "value": "5.0–6.0" }
+            ],
+            "ec": "1.4–1.8",
+            "ph": "6.5"
+          },
+          {
+            "name": "Развитие цветков",
+            "base": [
+              { "name": "Terra Vega", "value": "—" },
+              { "name": "Terra Bloom", "value": "5.0–6.0" }
+            ],
+            "ec": "1.4–1.8",
+            "ph": "6.5"
+          },
+          {
+            "name": "Созревание",
+            "base": [
+              { "name": "Terra Vega", "value": "—" },
+              { "name": "Terra Bloom", "value": "1.0–2.0" }
+            ],
+            "ec": "1.0",
+            "ph": "6.5"
+          },
+          {
+            "name": "Промывка",
+            "base": [
+              { "name": "Terra Vega", "value": "—" },
+              { "name": "Terra Bloom", "value": "—" }
+            ],
+            "ec": "0.4",
+            "ph": "6.5"
+          }
+        ]
+      },
+      {
+        "name": "Hydro",
+        "stages": [
+          {
+            "name": "Проращивание и укоренение",
+            "base": [
+              { "name": "Hydro Vega", "value": "—" },
+              { "name": "Hydro Bloom", "value": "—" }
+            ],
+            "ec": "0.4",
+            "ph": "5.5"
+          },
+          {
+            "name": "Вегетативный рост",
+            "base": [
+              { "name": "Hydro Vega", "value": "0.5–1.5" },
+              { "name": "Hydro Bloom", "value": "—" }
+            ],
+            "ec": "0.6–1.6",
+            "ph": "5.5–5.8"
+          },
+          {
+            "name": "Предцвет",
+            "base": [
+              { "name": "Hydro Vega", "value": "1.5–2.0" },
+              { "name": "Hydro Bloom", "value": "—" }
+            ],
+            "ec": "1.5–1.8",
+            "ph": "5.8–6.0"
+          },
+          {
+            "name": "Начало цветения",
+            "base": [
+              { "name": "Hydro Vega", "value": "—" },
+              { "name": "Hydro Bloom", "value": "3.0–4.0" }
+            ],
+            "ec": "1.5–2.2",
+            "ph": "6.0–6.2"
+          },
+          {
+            "name": "Развитие цветков",
+            "base": [
+              { "name": "Hydro Vega", "value": "—" },
+              { "name": "Hydro Bloom", "value": "1.5–2.0" }
+            ],
+            "ec": "1.3–2.0",
+            "ph": "6.0–6.2"
+          },
+          {
+            "name": "Созревание",
+            "base": [
+              { "name": "Hydro Vega", "value": "—" },
+              { "name": "Hydro Bloom", "value": "1.0" }
+            ],
+            "ec": "1.2–1.8",
+            "ph": "6.2–6.4"
+          },
+          {
+            "name": "Промывка",
+            "base": [
+              { "name": "Hydro Vega", "value": "—" },
+              { "name": "Hydro Bloom", "value": "—" }
+            ],
+            "ec": "0.4",
+            "ph": "6.2–6.4"
+          }
+        ]
+      }
+    ]
+  }
+  
