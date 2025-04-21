@@ -170,7 +170,7 @@ function calculate() {
 }
 
 // Привязка кнопки
-document.getElementById('calc-button').addEventListener('click', calculate);
+document.getElementById('calculate-btn').addEventListener('click', calculate);
 
 // Запуск
 loadData();
