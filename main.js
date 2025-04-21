@@ -1,5 +1,3 @@
-// main.js
-
 const state = {
   method: null,
   stage: null,
@@ -17,21 +15,18 @@ async function loadData() {
       fetch('data/simplex/simplexadd.json').then(r => r.json()),
       fetch('data/simplex/simplexstim.json').then(r => r.json()),
     ]);
-    console.log('baseData:', base);
-    console.log('addData:', additives);
-    console.log('stimData:', stimulators);
 
     state.baseData = base;
     state.addData = additives;
     state.stimData = stimulators;
+
     renderMethods(base.methods);
   } catch (e) {
     console.error('Ошибка при загрузке данных:', e);
   }
 }
 
-
-// 2. Рендер методов (Coco, Terra, Hydro)
+// 2. Рендер методов
 function renderMethods(methods) {
   const methodSelect = document.getElementById('method-select');
   methodSelect.innerHTML = '';
@@ -40,13 +35,15 @@ function renderMethods(methods) {
     btn.textContent = method.name;
     btn.onclick = () => {
       state.method = method.name;
-      renderStages(method.stages);
+      renderBaseInputs(); // если стадия выбрана — покажется база
+      const methodData = state.baseData.methods.find(m => m.name === state.method);
+      renderStages(methodData.stages); // рендерим стадии отдельно
     };
     methodSelect.appendChild(btn);
   });
 }
 
-// 3. Рендер стадий для выбранного метода
+// 3. Рендер стадий
 function renderStages(stages) {
   const stageSelect = document.getElementById('stage-select');
   stageSelect.innerHTML = '';
@@ -55,7 +52,7 @@ function renderStages(stages) {
     btn.textContent = stage.name;
     btn.onclick = () => {
       state.stage = stage.name;
-      renderBaseInputs(stage.base);
+      renderBaseInputs();     // стадия выбрана — покажем базу
       renderAdditives();
       renderStimulators();
     };
@@ -63,11 +60,18 @@ function renderStages(stages) {
   });
 }
 
-// 4. Рендер базовых удобрений
-function renderBaseInputs(baseList) {
+// 4. Рендер базовых удобрений (в разделе 1)
+function renderBaseInputs() {
   const baseContainer = document.getElementById('base-options');
   baseContainer.innerHTML = '';
-  baseList.forEach(item => {
+
+  if (!state.method || !state.stage) return;
+
+  const method = state.baseData.methods.find(m => m.name === state.method);
+  const stage = method?.stages.find(s => s.name === state.stage);
+  if (!stage) return;
+
+  stage.base.forEach(item => {
     if (item.value !== '—') {
       const div = document.createElement('div');
       div.textContent = `${item.name}: ${item.value} мл/л`;
@@ -118,7 +122,7 @@ function renderStimulators() {
   });
 }
 
-// 7. Обработка расчёта
+// 7. Расчёт
 function calculate() {
   const volume = parseFloat(document.getElementById('water-volume').value);
   state.volume = volume;
@@ -131,12 +135,10 @@ function calculate() {
 
   if (!method || !stage) {
     resultContainer.innerHTML += `<p>Ошибка: метод или стадия не выбраны.</p>`;
-    console.warn('method:', method);
-    console.warn('stage:', stage);
     return;
   }
 
-  const list = []; // ✅ вот это нужно было добавить
+  const list = [];
 
   // База
   stage.base.forEach(b => {
@@ -157,20 +159,20 @@ function calculate() {
 
   // Вывод
   list.forEach(item => {
-  const doses = item.value.split('–').map(str => parseFloat(str));
-  let result = '';
-  if (doses.length === 2) {
-    const minDose = (doses[0] * volume).toFixed(2);
-    const maxDose = (doses[1] * volume).toFixed(2);
-    result = `${minDose}–${maxDose} мл (на ${volume} л)`;
-  } else {
-    const single = (doses[0] * volume).toFixed(2);
-    result = `${single} мл (на ${volume} л)`;
-  }
-  const div = document.createElement('div');
-  div.textContent = `${item.name}: ${result}`;
-  resultContainer.appendChild(div);
-});
+    const doses = item.value.split('–').map(str => parseFloat(str));
+    let result = '';
+    if (doses.length === 2) {
+      const minDose = (doses[0] * volume).toFixed(2);
+      const maxDose = (doses[1] * volume).toFixed(2);
+      result = `${minDose}–${maxDose} мл (на ${volume} л)`;
+    } else {
+      const single = (doses[0] * volume).toFixed(2);
+      result = `${single} мл (на ${volume} л)`;
+    }
+    const div = document.createElement('div');
+    div.textContent = `${item.name}: ${result}`;
+    resultContainer.appendChild(div);
+  });
 
   // pH и EC
   const pH = stage.ph;
@@ -180,9 +182,8 @@ function calculate() {
   resultContainer.appendChild(phBlock);
 }
 
-
-// Привязка кнопки
+// Кнопка запуска
 document.getElementById('calculate-btn').addEventListener('click', calculate);
 
-// Запуск
+// Старт
 loadData();
