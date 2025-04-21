@@ -111,7 +111,7 @@ function renderAdditives() {
     }
 
     const doseDiv = document.createElement('div');
-    doseDiv.textContent = `[${dose} мл/л]`;
+    doseDiv.textContent = isActive ? `[${dose} мл/л]` : '[Не рекомендуется!]';
     doseDiv.style.fontSize = '0.9em';
     doseDiv.style.marginLeft = '1.5em';
     doseDiv.style.color = isActive ? '#444' : '#999';
@@ -163,7 +163,7 @@ function renderStimulators() {
     }
 
     const doseDiv = document.createElement('div');
-    doseDiv.textContent = `[${dose} мл/л]`;
+    doseDiv.textContent = isActive ? `[${dose} мл/л]` : '[Не рекомендуется!]';
     doseDiv.style.fontSize = '0.9em';
     doseDiv.style.marginLeft = '1.5em';
     doseDiv.style.color = isActive ? '#444' : '#999';
