@@ -32,6 +32,13 @@ button {
   transition: background 0.15s;
 }
 
+button.active {
+  background: #1a73e8;
+  color: #fff;
+  border-color: #1a73e8;
+}
+
+
 button:hover {
   background: #f0f0f0;
 }
