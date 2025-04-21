@@ -133,17 +133,17 @@ function renderAdditives() {
 
 
 // 6. Рендер стимуляторов
-function renderAdditives() {
-  const addContainer = document.getElementById('stimulators-options');
+function renderStimulators() {
+  const stimContainer = document.getElementById('stimulators-options');
   const stage = state.stage;
-  const list = state.stimData.additives;
+  const list = state.stimData.stimulators;
 
-  addContainer.innerHTML = '';
+  stimContainer.innerHTML = '';
 
   const active = [];
   const inactive = [];
 
-  list.forEach(add => {
+  list.forEach(stim => {
     const stageObj = stim.stages.find(s => s.name === stage);
     const isActive = stageObj && stageObj.value !== '—';
     const dose = stageObj?.value || '—';
