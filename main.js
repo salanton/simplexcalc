@@ -157,17 +157,20 @@ function calculate() {
 
   // Вывод
   list.forEach(item => {
-    const doses = item.value.split('–').map(str => parseFloat(str));
-    let result = '';
-    if (doses.length === 2) {
-      result = `${(doses[0] * volume).toFixed(2)}–${(doses[1] * volume).toFixed(2)} мл`;
-    } else {
-      result = `${(doses[0] * volume).toFixed(2)} мл`;
-    }
-    const div = document.createElement('div');
-    div.textContent = `${item.name}: ${result}`;
-    resultContainer.appendChild(div);
-  });
+  const doses = item.value.split('–').map(str => parseFloat(str));
+  let result = '';
+  if (doses.length === 2) {
+    const minDose = (doses[0] * volume).toFixed(2);
+    const maxDose = (doses[1] * volume).toFixed(2);
+    result = `${minDose}–${maxDose} мл (на ${volume} л)`;
+  } else {
+    const single = (doses[0] * volume).toFixed(2);
+    result = `${single} мл (на ${volume} л)`;
+  }
+  const div = document.createElement('div');
+  div.textContent = `${item.name}: ${result}`;
+  resultContainer.appendChild(div);
+});
 
   // pH и EC
   const pH = stage.ph;
