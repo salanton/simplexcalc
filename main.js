@@ -12,10 +12,10 @@ const state = {
 // 1. Загрузка JSON
 async function loadData() {
   const [base, additives, stimulators] = await Promise.all([
-    fetch('data/simplex/simplexbase.json').then(r => r.json()),
-    fetch('data/simplex/simplexadd.json').then(r => r.json()),
-    fetch('data/simplex/simplexstim.json').then(r => r.json()),
-  ]);
+  fetch('data/simplex/simplexbase.json').then(r => r.json()),
+  fetch('data/simplex/simplexadd.json').then(r => r.json()),
+  fetch('data/simplex/simplexstim.json').then(r => r.json()),
+]);
   state.baseData = base;
   state.addData = additives;
   state.stimData = stimulators;
