@@ -33,12 +33,18 @@ function renderMethods(methods) {
   methods.forEach(method => {
     const btn = document.createElement('button');
     btn.textContent = method.name;
+
     btn.onclick = () => {
       state.method = method.name;
-      renderBaseInputs(); // если стадия выбрана — покажется база
+      renderBaseInputs();
       const methodData = state.baseData.methods.find(m => m.name === state.method);
-      renderStages(methodData.stages); // рендерим стадии отдельно
+      renderStages(methodData.stages);
+
+      // ✅ Подсветка
+      [...methodSelect.children].forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     };
+
     methodSelect.appendChild(btn);
   });
 }
@@ -50,15 +56,22 @@ function renderStages(stages) {
   stages.forEach(stage => {
     const btn = document.createElement('button');
     btn.textContent = stage.name;
+
     btn.onclick = () => {
       state.stage = stage.name;
-      renderBaseInputs();     // стадия выбрана — покажем базу
+      renderBaseInputs();
       renderAdditives();
       renderStimulators();
+
+      // ✅ Подсветка
+      [...stageSelect.children].forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     };
+
     stageSelect.appendChild(btn);
   });
 }
+
 
 // 4. Рендер базовых удобрений (в разделе 1)
 function renderBaseInputs() {
