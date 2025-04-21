@@ -90,19 +90,36 @@ function renderAdditives() {
   list.forEach(add => {
     const stageObj = add.stages.find(s => s.name === stage);
     const isActive = stageObj && stageObj.value !== '—';
+    const dose = stageObj?.value || '—';
 
     const label = document.createElement('label');
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.dataset.name = add.name;
-    checkbox.dataset.value = stageObj?.value || '—';
+    checkbox.dataset.value = dose;
     checkbox.disabled = !isActive;
 
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = ` ${add.name}`;
+    if (!isActive) {
+      nameSpan.style.textDecoration = 'line-through';
+      nameSpan.style.color = '#c44';
+    }
+
+    const doseDiv = document.createElement('div');
+    doseDiv.textContent = `[${dose} мл/л]`;
+    doseDiv.style.fontSize = '0.9em';
+    doseDiv.style.marginLeft = '1.5em';
+    doseDiv.style.color = isActive ? '#444' : '#999';
+
     label.appendChild(checkbox);
-    label.append(` ${add.name}: ${stageObj?.value || '—'} мл/л`);
+    label.appendChild(nameSpan);
+    label.appendChild(doseDiv);
+
     addContainer.appendChild(label);
   });
 }
+
 
 // 6. Рендер стимуляторов
 function renderStimulators() {
@@ -114,16 +131,32 @@ function renderStimulators() {
   list.forEach(stim => {
     const stageObj = stim.stages.find(s => s.name === stage);
     const isActive = stageObj && stageObj.value !== '—';
+    const dose = stageObj?.value || '—';
 
     const label = document.createElement('label');
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.dataset.name = stim.name;
-    checkbox.dataset.value = stageObj?.value || '—';
+    checkbox.dataset.value = dose;
     checkbox.disabled = !isActive;
 
+    const nameSpan = document.createElement('span');
+    nameSpan.textContent = ` ${stim.name}`;
+    if (!isActive) {
+      nameSpan.style.textDecoration = 'line-through';
+      nameSpan.style.color = '#c44';
+    }
+
+    const doseDiv = document.createElement('div');
+    doseDiv.textContent = `[${dose} мл/л]`;
+    doseDiv.style.fontSize = '0.9em';
+    doseDiv.style.marginLeft = '1.5em';
+    doseDiv.style.color = isActive ? '#444' : '#999';
+
     label.appendChild(checkbox);
-    label.append(` ${stim.name}: ${stageObj?.value || '—'} мл/л`);
+    label.appendChild(nameSpan);
+    label.appendChild(doseDiv);
+
     stimContainer.appendChild(label);
   });
 }
