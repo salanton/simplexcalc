@@ -65,7 +65,7 @@ function renderStages(stages) {
 
 // 4. Рендер базовых удобрений
 function renderBaseInputs(baseList) {
-  const baseContainer = document.getElementById('base-container');
+  const baseContainer = document.getElementById('base-options');
   baseContainer.innerHTML = '';
   baseList.forEach(item => {
     if (item.value !== '—') {
@@ -78,7 +78,7 @@ function renderBaseInputs(baseList) {
 
 // 5. Рендер добавок
 function renderAdditives() {
-  const addContainer = document.getElementById('additives-container');
+  const addContainer = document.getElementById('additives-options');
   const stage = state.stage;
   const list = state.addData.additives;
   addContainer.innerHTML = '';
@@ -99,7 +99,7 @@ function renderAdditives() {
 
 // 6. Рендер стимуляторов
 function renderStimulators() {
-  const stimContainer = document.getElementById('stimulators-container');
+  const stimContainer = document.getElementById('stimulators-options');
   const stage = state.stage;
   const list = state.stimData.stimulators;
   stimContainer.innerHTML = '';
