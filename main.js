@@ -85,7 +85,11 @@ function renderAdditives() {
   const addContainer = document.getElementById('additives-options');
   const stage = state.stage;
   const list = state.addData.additives;
+
   addContainer.innerHTML = '';
+
+  const active = [];
+  const inactive = [];
 
   list.forEach(add => {
     const stageObj = add.stages.find(s => s.name === stage);
@@ -116,19 +120,30 @@ function renderAdditives() {
     label.appendChild(nameSpan);
     label.appendChild(doseDiv);
 
-    addContainer.appendChild(label);
+    if (isActive) {
+      active.push(label);
+    } else {
+      inactive.push(label);
+    }
   });
+
+  [...active, ...inactive].forEach(el => addContainer.appendChild(el));
 }
 
 
-// 6. Рендер стимуляторов
-function renderStimulators() {
-  const stimContainer = document.getElementById('stimulators-options');
-  const stage = state.stage;
-  const list = state.stimData.stimulators;
-  stimContainer.innerHTML = '';
 
-  list.forEach(stim => {
+// 6. Рендер стимуляторов
+function renderAdditives() {
+  const addContainer = document.getElementById('stimulators-options');
+  const stage = state.stage;
+  const list = state.stimData.additives;
+
+  addContainer.innerHTML = '';
+
+  const active = [];
+  const inactive = [];
+
+  list.forEach(add => {
     const stageObj = stim.stages.find(s => s.name === stage);
     const isActive = stageObj && stageObj.value !== '—';
     const dose = stageObj?.value || '—';
@@ -157,8 +172,14 @@ function renderStimulators() {
     label.appendChild(nameSpan);
     label.appendChild(doseDiv);
 
-    stimContainer.appendChild(label);
+    if (isActive) {
+      active.push(label);
+    } else {
+      inactive.push(label);
+    }
   });
+
+  [...active, ...inactive].forEach(el => stimContainer.appendChild(el));
 }
 
 
