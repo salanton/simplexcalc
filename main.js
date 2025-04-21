@@ -84,13 +84,35 @@ function renderBaseInputs() {
   const stage = method?.stages.find(s => s.name === state.stage);
   if (!stage) return;
 
+  const wrapper = document.createElement('div');
+  wrapper.style.display = 'flex';
+  wrapper.style.justifyContent = 'center';
+  wrapper.style.gap = '2rem';
+  wrapper.style.flexWrap = 'wrap';
+  wrapper.style.textAlign = 'center';
+  wrapper.style.marginTop = '1em';
+
   stage.base.forEach(item => {
     if (item.value !== '—') {
-      const div = document.createElement('div');
-      div.textContent = `${item.name}: ${item.value} мл/л`;
-      baseContainer.appendChild(div);
+      const block = document.createElement('div');
+
+      const name = document.createElement('div');
+      name.textContent = item.name;
+      name.style.fontWeight = 'bold';
+      name.style.marginBottom = '0.3em';
+
+      const dose = document.createElement('div');
+      dose.textContent = `[${item.value} мл/л]`;
+      dose.style.fontSize = '0.9em';
+      dose.style.color = '#444';
+
+      block.appendChild(name);
+      block.appendChild(dose);
+      wrapper.appendChild(block);
     }
   });
+
+  baseContainer.appendChild(wrapper);
 }
 
 // 5. Рендер добавок
