@@ -21,6 +21,7 @@ async function loadData() {
     state.stimData = stimulators;
 
     renderMethods(base.methods);
+    renderStages(base.methods[0].stages); // раньше вызывался только после выбора метода
   } catch (e) {
     console.error('Ошибка при загрузке данных:', e);
   }
@@ -38,7 +39,6 @@ function renderMethods(methods) {
       state.method = method.name;
       renderBaseInputs();
       const methodData = state.baseData.methods.find(m => m.name === state.method);
-      renderStages(methodData.stages);
 
       // ✅ Подсветка
       [...methodSelect.children].forEach(b => b.classList.remove('active'));
