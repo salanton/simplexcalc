@@ -1,25 +1,62 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Калькулятор удобрений</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimplexCalc — Калькулятор подкормок</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+    section { margin-bottom: 2em; }
+    .hidden { display: none; }
+    h2 { margin-top: 2em; }
+    label { display: block; margin: 0.5em 0; }
+    .inline { display: inline-block; margin-right: 1em; }
+  </style>
 </head>
 <body>
-  <h1>Калькулятор удобрений</h1>
+  <h1>SimplexCalc</h1>
 
-  <label for="solution">Метод выращивания:</label>
-<select id="solution">
-  <option value="coco">Кокос</option>
-  <option value="hydro">Гидропоника</option>
-  <option value="soil">Почва</option>
-</select>
+  <!-- Шаг 1: Метод и стадия -->
+  <section id="step-1">
+    <h2>1. Выберите метод и стадию</h2>
+    <div id="method-select"></div>
+    <div id="stage-select"></div>
+  </section>
 
-  <button onclick="calculate()">Рассчитать</button>
+  <!-- Шаг 2: Базовые удобрения -->
+  <section id="step-2">
+    <h2>2. Базовые удобрения</h2>
+    <div id="base-options"></div>
+  </section>
 
-  <div id="result"></div>
+  <!-- Шаг 3: Добавки -->
+  <section id="step-3">
+    <h2>3. Добавки</h2>
+    <div id="additives-options"></div>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- Шаг 4: Стимуляторы -->
+  <section id="step-4">
+    <h2>4. Стимуляторы</h2>
+    <div id="stimulators-options"></div>
+  </section>
+
+  <!-- Шаг 5: Объём воды -->
+  <section id="step-5">
+    <h2>5. Укажите объём воды</h2>
+    <label>
+      Объём (л):
+      <input type="number" id="water-volume" min="0.01" step="0.01" value="1">
+    </label>
+  </section>
+
+  <!-- Шаг 6: Итоговый рецепт -->
+  <section id="step-6">
+    <h2>6. Результат</h2>
+    <button id="calculate-btn">Рассчитать рецепт</button>
+    <div id="recipe-output"></div>
+  </section>
+
+  <script type="module" src="./main.js"></script>
 </body>
 </html>
