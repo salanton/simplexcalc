@@ -31,46 +31,57 @@ async function loadData() {
 function renderMethods(methods) {
   const methodSelect = document.getElementById('method-select');
   methodSelect.innerHTML = '';
-  methods.forEach(method => {
-    const btn = document.createElement('button');
-    btn.textContent = method.name;
 
-    btn.onclick = () => {
+  const icons = {
+    'Coco': '🌴',
+    'Terra': '🌿',
+    'Hydro': '💧'
+  };
+
+  methods.forEach(method => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.textContent = `${icons[method.name] || ''} ${method.name}`;
+
+    card.onclick = () => {
       state.method = method.name;
       renderBaseInputs();
-      const methodData = state.baseData.methods.find(m => m.name === state.method);
 
-      // ✅ Подсветка
-      [...methodSelect.children].forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      // Подсветка активной карточки
+      [...methodSelect.children].forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
     };
 
-    methodSelect.appendChild(btn);
+    methodSelect.appendChild(card);
   });
 }
+
 
 // 3. Рендер стадий
 function renderStages(stages) {
   const stageSelect = document.getElementById('stage-select');
   stageSelect.innerHTML = '';
-  stages.forEach(stage => {
-    const btn = document.createElement('button');
-    btn.textContent = stage.name;
 
-    btn.onclick = () => {
+  stages.forEach(stage => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.textContent = stage.name;
+
+    card.onclick = () => {
       state.stage = stage.name;
       renderBaseInputs();
       renderAdditives();
       renderStimulators();
 
-      // ✅ Подсветка
-      [...stageSelect.children].forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      // Подсветка активной карточки
+      [...stageSelect.children].forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
     };
 
-    stageSelect.appendChild(btn);
+    stageSelect.appendChild(card);
   });
 }
+
 
 
 // 4. Рендер базовых удобрений (в разделе 1)
