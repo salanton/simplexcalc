@@ -116,8 +116,8 @@ function renderBaseInputs() {
           // Если не подходит к стадии
           name.style.textDecoration = 'line-through';
           name.style.color = '#c44';
-          dose.textContent = 'Не рекомендуется!';
-          dose.style.color = '#c44';
+          dose.textContent = '[Не рекомендуется!]';
+          dose.style.color = '#444';
         }
       }
 
