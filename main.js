@@ -78,11 +78,10 @@ function renderBaseInputs() {
   const baseContainer = document.getElementById('base-options');
   baseContainer.innerHTML = '';
 
-  if (!state.method || !state.stage) return;
+  if (!state.method) return;  // Если метод не выбран — ничего не показываем
 
   const method = state.baseData.methods.find(m => m.name === state.method);
-  const stage = method?.stages.find(s => s.name === state.stage);
-  if (!stage) return;
+  if (!method) return;
 
   const wrapper = document.createElement('div');
   wrapper.style.display = 'flex';
@@ -92,8 +91,11 @@ function renderBaseInputs() {
   wrapper.style.textAlign = 'center';
   wrapper.style.marginTop = '1em';
 
-  stage.base.forEach(item => {
-    if (item.value !== '—') {
+  // Берем удобрения с первой стадии для отображения названий
+  const baseList = method.stages[0].base;
+
+  baseList.forEach(item => {
+    if (item.name && item.name !== '') {
       const block = document.createElement('div');
 
       const name = document.createElement('div');
@@ -102,9 +104,19 @@ function renderBaseInputs() {
       name.style.marginBottom = '0.3em';
 
       const dose = document.createElement('div');
-      dose.textContent = `[${item.value} мл/л]`;
+
+      if (state.stage) {
+        const stageData = method.stages.find(s => s.name === state.stage);
+        const baseData = stageData.base.find(b => b.name === item.name);
+        if (baseData && baseData.value !== '—') {
+          dose.textContent = `[${baseData.value} мл/л]`;
+          dose.style.color = '#444';
+        } else {
+          dose.textContent = '';
+        }
+      }
+
       dose.style.fontSize = '0.9em';
-      dose.style.color = '#444';
 
       block.appendChild(name);
       block.appendChild(dose);
