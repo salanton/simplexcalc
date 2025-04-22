@@ -114,10 +114,11 @@ function renderBaseInputs() {
           dose.style.color = '#444';
         } else {
           // Если не подходит к стадии
+          name.style.fontWeight = 'normal';
           name.style.textDecoration = 'line-through';
           name.style.color = '#c44';
           dose.textContent = '[Не рекомендуется!]';
-          dose.style.color = '#444';
+          dose.style.color = '#999';
         }
       }
 
@@ -130,7 +131,7 @@ function renderBaseInputs() {
   baseContainer.appendChild(wrapper);
 }
 
-// 5. Рендер добавок
+// 3. Рендер добавок
 function renderAdditives() {
   const addContainer = document.getElementById('additives-options');
   const stage = state.stage;
