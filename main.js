@@ -78,7 +78,7 @@ function renderBaseInputs() {
   const baseContainer = document.getElementById('base-options');
   baseContainer.innerHTML = '';
 
-  if (!state.method) return;  // Если метод не выбран — ничего не показываем
+  if (!state.method) return;
 
   const method = state.baseData.methods.find(m => m.name === state.method);
   if (!method) return;
@@ -91,7 +91,6 @@ function renderBaseInputs() {
   wrapper.style.textAlign = 'center';
   wrapper.style.marginTop = '1em';
 
-  // Берем удобрения с первой стадии для отображения названий
   const baseList = method.stages[0].base;
 
   baseList.forEach(item => {
@@ -104,19 +103,23 @@ function renderBaseInputs() {
       name.style.marginBottom = '0.3em';
 
       const dose = document.createElement('div');
+      dose.style.fontSize = '0.9em';
 
       if (state.stage) {
         const stageData = method.stages.find(s => s.name === state.stage);
         const baseData = stageData.base.find(b => b.name === item.name);
+
         if (baseData && baseData.value !== '—') {
           dose.textContent = `[${baseData.value} мл/л]`;
           dose.style.color = '#444';
         } else {
-          dose.textContent = '';
+          // Если не подходит к стадии
+          name.style.textDecoration = 'line-through';
+          name.style.color = '#c44';
+          dose.textContent = 'Не рекомендуется!';
+          dose.style.color = '#c44';
         }
       }
-
-      dose.style.fontSize = '0.9em';
 
       block.appendChild(name);
       block.appendChild(dose);
