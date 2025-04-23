@@ -33,9 +33,9 @@ function renderMethods(methods) {
   methodSelect.innerHTML = '';
 
   const icons = {
-    'Coco': '🌴',
-    'Terra': '🌿',
-    'Hydro': '💧'
+    'Кокосовый субстрат': '🌴',
+    'Земля': '🌿',
+    'Гидропоника': '💧'
   };
 
   methods.forEach(method => {
