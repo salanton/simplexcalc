@@ -38,16 +38,21 @@ function renderMethods(methods) {
     'Hydro': '💧'
   };
 
+  const displayNames = {
+    'Coco': 'Кокосовый субстрат',
+    'Terra': 'Почвосмесь',
+    'Hydro': 'Гидропоника'
+  };
+
   methods.forEach(method => {
     const card = document.createElement('div');
     card.className = 'card';
-    card.textContent = `${icons[method.name] || ''} ${method.name}`;
+    card.textContent = `${icons[method.name] || ''} ${displayNames[method.name] || method.name}`;
 
     card.onclick = () => {
-      state.method = method.name;
+      state.method = method.name;  // В state сохраняем техническое название!
       renderBaseInputs();
 
-      // Подсветка активной карточки
       [...methodSelect.children].forEach(c => c.classList.remove('active'));
       card.classList.add('active');
     };
