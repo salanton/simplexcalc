@@ -21,56 +21,31 @@ section {
   box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
-/* === Карточки вместо кнопок === */
-.card {
+.card-button {
   display: inline-block;
-  padding: 1rem 1.5rem;
-  margin: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: center;
-  min-width: 100px;
-  user-select: none;
-}
-
-.card:hover {
-  background: #f0faff;
-  border-color: #2196F3;
-}
-
-.card.active {
-  background: #2196F3;
-  color: #fff;
-  border-color: #2196F3;
-}
-
-/* === Старые кнопки (если останутся) === */
-button {
   background: #ffffff;
   border: 1px solid #d0d0d0;
-  border-radius: 6px;
-  padding: 0.4rem 1rem;
-  margin: 0.25rem;
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  margin: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.15s, box-shadow 0.15s;
+  text-align: center;
+  min-width: 150px;
 }
 
-button.active {
+.card-button.active {
   background: #1a73e8;
   color: #fff;
   border-color: #1a73e8;
+  box-shadow: 0 2px 6px rgba(26, 115, 232, 0.3);
 }
 
-button:hover {
+.card-button:hover {
   background: #f0f0f0;
 }
 
-/* === Поле ввода объёма воды === */
 input[type="number"] {
   padding: 0.4rem;
   font-size: 1rem;
@@ -79,14 +54,12 @@ input[type="number"] {
   width: 6rem;
 }
 
-/* === Чекбоксы с подписями === */
 label {
   margin-bottom: 0.5rem;
   display: block;
   font-size: 1rem;
 }
 
-/* === Результат рецепта === */
 #recipe-output {
   background: #f9f9f9;
   padding: 1rem;
@@ -98,4 +71,44 @@ label {
 
 #recipe-output div {
   margin-bottom: 0.5rem;
+}
+
+.options-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.option-card {
+  background: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.option-card.inactive {
+  opacity: 0.6;
+}
+
+.option-card .name {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.option-card .dose {
+  font-size: 0.9em;
+  color: #444;
+}
+
+.option-card.inactive .name {
+  text-decoration: line-through;
+  color: #c44;
+}
+
+.option-card.inactive .dose {
+  color: #999;
 }
