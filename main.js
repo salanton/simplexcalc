@@ -39,19 +39,21 @@ function renderMethods(methods) {
   };
 
   const displayNames = {
-    'Coco': 'Кокосовый субстрат',
-    'Terra': 'Почвосмесь',
-    'Hydro': 'Гидропоника'
+    'Coco': 'Кокос',
+    'Terra': 'Почва',
+    'Hydro': 'Гидро'
   };
 
   methods.forEach(method => {
     const card = document.createElement('div');
-    card.className = 'card';
+    card.className = 'card-button';
     card.textContent = `${icons[method.name] || ''} ${displayNames[method.name] || method.name}`;
 
     card.onclick = () => {
-      state.method = method.name;  // В state сохраняем техническое название!
+      state.method = method.name;
       renderBaseInputs();
+      const methodData = state.baseData.methods.find(m => m.name === state.method);
+      renderStages(methodData.stages);
 
       [...methodSelect.children].forEach(c => c.classList.remove('active'));
       card.classList.add('active');
@@ -61,7 +63,6 @@ function renderMethods(methods) {
   });
 }
 
-
 // 3. Рендер стадий
 function renderStages(stages) {
   const stageSelect = document.getElementById('stage-select');
@@ -69,7 +70,7 @@ function renderStages(stages) {
 
   stages.forEach(stage => {
     const card = document.createElement('div');
-    card.className = 'card';
+    card.className = 'card-button';
     card.textContent = stage.name;
 
     card.onclick = () => {
@@ -78,7 +79,6 @@ function renderStages(stages) {
       renderAdditives();
       renderStimulators();
 
-      // Подсветка активной карточки
       [...stageSelect.children].forEach(c => c.classList.remove('active'));
       card.classList.add('active');
     };
@@ -86,6 +86,7 @@ function renderStages(stages) {
     stageSelect.appendChild(card);
   });
 }
+
 
 
 
