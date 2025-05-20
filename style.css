@@ -7,17 +7,24 @@ body {
   margin: auto;
 }
 
-h1, h2 {
+h1 {
   font-weight: 600;
-  margin-bottom: 0.5em;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
 }
 
 section {
   background: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  padding: 1.2rem 1.5rem 1.5rem; /* ⬅︎ меньше паддинг сверху */
+  margin-bottom: 1.5rem; /* ⬅︎ тоже можно слегка уменьшить */
   box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
