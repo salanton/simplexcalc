@@ -15,15 +15,17 @@ h1 {
 
 h2 {
   font-weight: 600;
-  margin-top: 0;
+  margin-top: 0 !important;
   margin-bottom: 0.75rem;
+  padding-left: 0.5rem;
 }
+
 
 section {
   background: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  padding: 1.2rem 1.5rem 1.5rem; /* ⬅︎ меньше паддинг сверху */
+  padding: 1rem 1.5rem 1.5rem; /* ⬅︎ меньше паддинг сверху */
   margin-bottom: 1.5rem; /* ⬅︎ тоже можно слегка уменьшить */
   box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
