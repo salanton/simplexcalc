@@ -1,4 +1,4 @@
-body {
+Ошbody {
   font-family: 'Segoe UI', system-ui, sans-serif;
   background: #fafafa;
   color: #1a1a1a;
@@ -120,4 +120,12 @@ label {
 
 .option-card.inactive .dose {
   color: #999;
+}
+
+#method-select, #stage-select {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+  margin-top: 1rem;
 }
