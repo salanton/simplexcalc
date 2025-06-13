@@ -68,10 +68,22 @@ function renderStages(stages) {
   const stageSelect = document.getElementById('stage-select');
   stageSelect.innerHTML = '';
 
+  const stageOrder = {
+    'Проращивание и укоренение': 1,
+    'Вегетативный рост': 2,
+    'Предцвет': 3,
+    'Начало цветения': 4,
+    'Развитие цветков': 5,
+    'Созревание': 6,
+    'Промывка': 7
+  };
+
   stages.forEach(stage => {
     const card = document.createElement('div');
-    card.className = 'card-button';
+    card.className = 'card-button stage';
     card.textContent = stage.name;
+
+    card.style.order = stageOrder[stage.name] || 99;
 
     card.onclick = () => {
       state.stage = stage.name;
@@ -86,9 +98,6 @@ function renderStages(stages) {
     stageSelect.appendChild(card);
   });
 }
-
-
-
 
 // 4. Рендер базовых удобрений (в разделе 1)
 function renderBaseInputs() {
